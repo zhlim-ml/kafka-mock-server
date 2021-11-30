@@ -15,16 +15,15 @@ Scenario: Verify if mock server is receiving message after POST
     # define the path 
     * def pathName = "/test/"
     
+    # Post method to send testData
     Given path pathName
     And request testData
     
     When method POST
     Then status 200
     And match response == "Message Accepted"
-    
-    # define the path 
-    * def pathName = "/test/"
-    
+       
+    #Call Get to retrieve posted ID.
     Given path pathName + testData.id
 
     When method GET

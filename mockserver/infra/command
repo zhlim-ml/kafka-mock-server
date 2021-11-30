@@ -1,3 +1,8 @@
 docker build -t karate-mock-server .
 
-docker run --rm -d -p 8080:80 karate-mock-server
+docker run --name mock --rm -d -p 8080:80 karate-mock-server
+
+curl localhost:8080/test/1
+
+* def port = karate.start('classpath:mock-server/mock.feature').port
+* url "http://localhost:" + port 
